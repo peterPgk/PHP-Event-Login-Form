@@ -1,9 +1,9 @@
 <?php
 
-namespace Pgk\Observers;
+namespace Pgk\Contracts;
 
 
-use Pgk\Options\Flash;
+use Pgk\Utils\Flash;
 use SplSubject;
 
 abstract class Observer implements \SplObserver {

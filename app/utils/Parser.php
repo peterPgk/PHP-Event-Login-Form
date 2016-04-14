@@ -1,13 +1,13 @@
 <?php
 
-namespace Pgk\Options;
+namespace Pgk\Utils;
 
 
 use Pgk\Contracts\ParserInterface;
 
 /**
  * Class Parser
- * @package Pgk\Options
+ * @package Pgk\Utils
  */
 trait Parser {
 	private static $parsed;

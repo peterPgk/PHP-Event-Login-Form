@@ -3,6 +3,7 @@
 namespace Pgk\Observers;
 
 
+use Pgk\Contracts\Observer;
 use Pgk\Core\Config;
 use Pgk\Core\Mail;
 use SplSubject;

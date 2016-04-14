@@ -1,7 +1,7 @@
 <?php
 namespace Pgk\Core;
 
-use Pgk\Options\Parser;
+use Pgk\Utils\Parser;
 
 /**
  * Class Messages

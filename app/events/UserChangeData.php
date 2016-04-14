@@ -2,11 +2,12 @@
 
 namespace Pgk\Events;
 
+use Pgk\Contracts\Event;
 use Pgk\Core\Redirect;
 use Pgk\Core\Session;
 use Pgk\Model\User;
-use Pgk\Options\UserValidation;
-use Pgk\Options\Validation;
+use Pgk\Utils\UserValidation;
+use Pgk\Utils\Validation;
 
 
 /**

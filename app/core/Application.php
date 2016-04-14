@@ -71,7 +71,7 @@ class Application
 			$controller = new $class( $this->_container );
 
 			if ( method_exists( $controller, $this->action ) ) {
-				call_user_func_array( array( $controller, $this->action ), $this->parameters);
+				call_user_func_array( array( $controller, $this->action ), $this->parameters );
 				exit();
 			}
 		}

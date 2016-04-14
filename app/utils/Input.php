@@ -1,6 +1,6 @@
 <?php
 
-namespace Pgk\Options;
+namespace Pgk\Utils;
 
 
 trait Input {

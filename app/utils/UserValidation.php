@@ -1,13 +1,13 @@
 <?php
 
-namespace Pgk\Options;
+namespace Pgk\Utils;
 
 /**
  * Class UserValidation
  *
  * Validate some user fields
  *
- * @package Pgk\Options
+ * @package Pgk\Utils
  */
 trait UserValidation  {
 

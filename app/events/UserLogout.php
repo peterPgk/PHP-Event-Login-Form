@@ -2,6 +2,7 @@
 
 namespace Pgk\Events;
 
+use Pgk\Contracts\Event;
 use Pgk\Core\Redirect;
 use Pgk\Core\Session;
 use Pgk\Model\User;

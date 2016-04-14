@@ -1,13 +1,13 @@
 <?php
 
-namespace Pgk\Events;
+namespace Pgk\Contracts;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Pgk\Observers\FlashMessageObserver;
 use Pgk\Observers\RedirectToObserver;
-use Pgk\Options\Flash;
-use Pgk\Options\Input;
+use Pgk\Utils\Flash;
+use Pgk\Utils\Input;
 use SplObserver;
 
 /**

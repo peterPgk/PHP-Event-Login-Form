@@ -4,11 +4,12 @@ namespace Pgk\Events;
 
 
 use Illuminate\Database\Eloquent\Collection;
+use Pgk\Contracts\Event;
 use Pgk\Core\Redirect;
 use Pgk\Model\User;
 use Pgk\Observers\MailPasswordReset;
-use Pgk\Options\UserValidation;
-use Pgk\Options\Validation;
+use Pgk\Utils\UserValidation;
+use Pgk\Utils\Validation;
 
 /**
  * Class UserResetPassword

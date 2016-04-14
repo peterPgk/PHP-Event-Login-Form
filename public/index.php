@@ -5,7 +5,7 @@ use Pgk\Core\Application;
 use Pgk\Core\Config;
 use Pgk\Core\Messages;
 use Pgk\Core\Session;
-use Pgk\Options\ArrayParser;
+use Pgk\Utils\ArrayParser;
 
 /**
  * Autoload
@@ -16,13 +16,13 @@ require __DIR__ . '/../vendor/autoload.php';
  * Load configurations
  */
 $config = new Config( new ArrayParser() );
-$config->load( __DIR__ . '/../app/config.php' );
+$config->load( __DIR__ . '/../app/options.php' );
 
 /**
  * Messages 
  */
 $messages = new Messages( new ArrayParser );
-$messages->load( __DIR__ . '/../app/texts.php' );
+$messages->load( __DIR__ . '/../app/messages.php' );
 
 /**
  * Eloquent

@@ -3,6 +3,7 @@
 namespace Pgk\Observers;
 
 
+use Pgk\Contracts\Observer;
 use SplSubject;
 
 class RedirectToObserver extends Observer {

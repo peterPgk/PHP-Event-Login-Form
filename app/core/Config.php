@@ -2,7 +2,7 @@
 
 namespace Pgk\Core;
 
-use Pgk\Options\Parser;
+use Pgk\Utils\Parser;
 
 class Config
 {
