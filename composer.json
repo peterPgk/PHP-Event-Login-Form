@@ -1,0 +1,22 @@
+{
+  "name": "login form with event/observer pattern",
+  "description": "login form with event/observer pattern realization, inspired by Savea job apply problem",
+  "autoload": {
+    "psr-4": {
+      "Pgk\\": "app"
+    }
+  },
+  "authors": [
+    {
+      "name": "Petar Kenderov",
+      "email": "peter.pgk@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "illuminate/database": "^5.2",
+    "phpmailer/phpmailer": "~5.2"
+  },
+  "require-dev": {
+  }
+}
