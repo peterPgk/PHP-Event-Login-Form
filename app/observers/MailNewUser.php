@@ -18,7 +18,7 @@ class MailNewUser extends Observer {
 	 * The <b>SplSubject</b> notifying the observer of an update.
 	 * </p>
 	 *
-	 * @return void
+	 * @return bool
 	 * @since 5.1.0
 	 */
 	public function update( Event $subject ) {
@@ -30,8 +30,10 @@ class MailNewUser extends Observer {
 			$body .= 'Your new username is "' . $subject->getUser('username') . '" and your password is "' . $subject->getInput( 'password' ) . '"';
 
 
-			$mail->sendMail( $subject->getUser('email'), Config::get('email.email_from'), Config::get('email.name_from'), 'New user registration', $body );
+			return $mail->sendMail( $subject->getUser('email'), Config::get('email.email_from'), Config::get('email.name_from'), 'New user registration', $body );
 		}
+
+		return false;
 
 	}
 }
