@@ -6,7 +6,10 @@ namespace Pgk\Utils;
 use Pgk\Contracts\ParserInterface;
 
 /**
- * Class Parser
+ * Trait Parser
+ *
+ * Basic implementation of strategy pattern
+ *
  * @package Pgk\Utils
  */
 trait Parser {
@@ -25,10 +28,20 @@ trait Parser {
 		$this->setParser($parser);
 	}
 
+	/**
+	 * @param $path
+	 *
+	 * @return string
+	 */
 	public static function get( $path ) {
 		return static::_get( $path );
 	}
 
+	/**
+	 * @param null $path
+	 *
+	 * @return string
+	 */
 	public function _get( $path = null ) {
 
 		if( $path ) {
@@ -44,14 +57,19 @@ trait Parser {
 			return $config;
 		}
 
-//		return self::$parsed;
 		return '';
 	}
 
+	/**
+	 * @param ParserInterface $parser
+	 */
 	public function setParser( ParserInterface $parser ) {
 		$this->parser = $parser;
 	}
 
+	/**
+	 * @param $file
+	 */
 	public function load( $file ) {
 		if ( file_exists( realpath( $file) ) ){
 			self::$parsed = $this->parser->parse( $file );

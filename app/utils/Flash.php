@@ -34,6 +34,9 @@ trait Flash {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public function flash() {
 		if( count( $this->messages ) !== 0 ) {
 			foreach ( $this->messages as $key => $value ) {

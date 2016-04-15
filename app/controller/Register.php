@@ -39,9 +39,9 @@ class Register extends Controller
      */
     public function register() {
 	    
-	    $register_event = new UserRegister;
-	    $register_event->attach( new MailNewUser() );
-	    $register_event->fire(  Request::post( 'user' ) );
+	    (new UserRegister())
+		    ->attach( new MailNewUser, 'successful' )
+		    ->fire( Request::post( 'user' ) );
 
     }
 }

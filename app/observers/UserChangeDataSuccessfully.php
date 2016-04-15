@@ -2,11 +2,20 @@
 
 namespace Pgk\Observers;
 
-
 use Pgk\Contracts\Event;
 use Pgk\Contracts\Observer;
+use SplSubject;
 
-class RedirectToObserver extends Observer {
+/**
+ * Class UserLoginUnsuccessful
+ *
+ * Clear db when user change its data successfully
+ *
+ * Only for exercise
+ *
+ * @package Pgk\Observers
+ */
+class UserChangeDataSuccessfully extends Observer {
 
 	/**
 	 * Receive update from subject
@@ -20,5 +29,6 @@ class RedirectToObserver extends Observer {
 	 * @since 5.1.0
 	 */
 	public function update( Event $subject ) {
-		$subject->redirect();
-}}
+		$subject->getUser()->fill(['password_fails' => 0])->save();
+	}
+}

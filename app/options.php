@@ -21,15 +21,15 @@ return [
 	'email' => [
 		'mailer' => 'phpmailer',
 		'smtp' => true,
-		'smtp_host' => 'smtp.gmail.com',
+		'smtp_host' => 'smtp_host',
 		'smtp_auth' => true,
-		'smtp_username' => 'your email',
-		'smtp_password' => 'your password',
+		'smtp_username' => 'your@user.name',
+		'smtp_password' => 'your_password',
 		'smtp_port' => 465,
 		'smtp_encryption' => 'ssl',
 
-		'email_from' => 'your email',
-		'name_from' => 'your name',
+		'email_from' => 'your@email.from',
+		'name_from' => 'your_name_from',
 	],
 	/**
 	 * Configuration for: Base URL

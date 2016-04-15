@@ -3,8 +3,8 @@
 namespace Pgk\Observers;
 
 
+use Pgk\Contracts\Event;
 use Pgk\Contracts\Observer;
-use SplSubject;
 
 /**
  * Class FlashMessageObserver
@@ -13,8 +13,8 @@ use SplSubject;
 class FlashMessageObserver extends Observer {
 
 	/**
-	 * @param SplSubject $subject
+	 * @param Event $subject
 	 */
-	public function update( SplSubject $subject ) {
+	public function update( Event $subject ) {
 		$subject->flash();
 }}

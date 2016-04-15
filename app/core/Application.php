@@ -6,6 +6,8 @@ use Pgk\Controller\Error;
 use Pgk\Events\UserChangeData;
 use Pgk\Events\UserLogout;
 use Pgk\Observers\MailUserChangeData;
+use Pgk\Observers\UserChangeDataSuccessfully;
+use Pgk\Observers\UserChangeDataUnsuccessfully;
 
 /**
  * Class Application
@@ -52,7 +54,9 @@ class Application
 		$this->_container->set('logout_event', new UserLogout);
 
 		$user_change_data_event = new UserChangeData;
-		$user_change_data_event->attach(new MailUserChangeData);
+		$user_change_data_event->attach(new UserChangeDataUnsuccessfully, 'unsuccessful');
+		$user_change_data_event->attach(new UserChangeDataSuccessfully, 'successful');
+		$user_change_data_event->attach(new MailUserChangeData, 'successful');
 
 		$this->_container->set( 'change_data_event', $user_change_data_event );
 

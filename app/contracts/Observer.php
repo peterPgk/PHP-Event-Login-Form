@@ -6,7 +6,7 @@ namespace Pgk\Contracts;
 use Pgk\Utils\Flash;
 use SplSubject;
 
-abstract class Observer implements \SplObserver {
+abstract class Observer implements ObserverInterface {
 
 	use Flash;
 
@@ -21,6 +21,6 @@ abstract class Observer implements \SplObserver {
 	 * @return void
 	 * @since 5.1.0
 	 */
-	abstract public function update( SplSubject $subject );
+	abstract public function update( Event $subject );
 
 }

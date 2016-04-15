@@ -13,16 +13,8 @@ class User extends Model
 
 	protected $primaryKey = 'user_id';
 
-	protected $fillable = [
-		'session_id',
-		'username',
-		'password',
-		'email',
-		'last_login',
-		'password_reset_date',
-		'password_reset_token'
-	];
-
+	protected $guarded = [];
+	
 	/**
 	 * Check if given value already exists in database
 	 *
@@ -41,15 +33,11 @@ class User extends Model
 	 * @param $query \Illuminate\Database\Eloquent\Builder
 	 * @param $name
 	 *
-	 * @return \Illuminate\Database\Eloquent\Model|null
+	 * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder|null
 	 */
 	public function scopeByNameOrEmail( $query, $name ) {
 
 		return $query->where( 'username', $name )->orWhere( 'email', $name )->first();
-
-		
-		
-//		return $t;
 	}
 
 
@@ -60,7 +48,7 @@ class User extends Model
 	 * @param $name string
 	 * @param $code string
 	 *
-	 * @return \Illuminate\Database\Eloquent\Model|null
+	 * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder|null
 	 */
 	public function scopeByNameAndCode( $query, $name, $code ) {
 

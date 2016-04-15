@@ -26,9 +26,11 @@ class UserChangeData extends Event {
 	 */
 	public function __construct() {
 
+		parent::__construct();
+
 		$this->validator = new Validation;
 
-		parent::__construct();
+		return $this;
 	}
 
 	/**

@@ -44,10 +44,12 @@ class User extends Controller
      */
     public function post_edit_username() {
         if ( !Auth::isTokenValid() ) {
-	        $this->_container->get( 'logout_event' )->fire( null, Session::getUser('user_id') );
+	        $this->_container->get( 'logout_event' )
+		        ->fire( null, Session::getUser('user_id') );
         }
 
-	    $this->_container->get( 'change_data_event' )->fire( Request::post( 'username' ), Session::getUser( 'user_id' ), 'username' );
+	    $this->_container->get( 'change_data_event' )
+		    ->fire( Request::post( 'username' ), Session::getUser( 'user_id' ), 'username' );
     }
 
     /**
@@ -61,7 +63,8 @@ class User extends Controller
      * Handles edit user email POST action
      */
     public function post_edit_email() {
-	    $this->_container->get( 'change_data_event' )->fire( Request::post( 'email' ), Session::getUser( 'user_id' ), 'email' );
+	    $this->_container->get( 'change_data_event' )
+		    ->fire( Request::post( 'email' ), Session::getUser( 'user_id' ), 'email' );
     }
 
 

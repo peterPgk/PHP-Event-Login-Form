@@ -26,6 +26,8 @@ class UserRegister extends Event {
 		parent::__construct();
 
 		$this->validator = new Validation;
+
+		return $this;
 	}
 
 	/**
