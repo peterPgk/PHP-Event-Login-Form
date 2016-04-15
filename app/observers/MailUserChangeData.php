@@ -3,6 +3,7 @@
 namespace Pgk\Observers;
 
 
+use Pgk\Contracts\Event;
 use Pgk\Contracts\Observer;
 use Pgk\Core\Config;
 use Pgk\Core\Mail;
@@ -14,16 +15,16 @@ class MailUserChangeData extends Observer {
 	 * Receive update from subject
 	 * @link http://php.net/manual/en/splobserver.update.php
 	 *
-	 * @param SplSubject $subject <p>
+	 * @param Event $subject <p>
 	 * The <b>SplSubject</b> notifying the observer of an update.
 	 * </p>
 	 *
 	 * @return void
 	 * @since 5.1.0
 	 */
-	public function update( SplSubject $subject ) {
+	public function update( Event $subject ) {
 
-		if( $subject->hasUser() && $subject->isFired() ) {
+		if( $subject->hasUser() ) {
 
 			$mail = new Mail();
 

@@ -8,7 +8,6 @@ use Pgk\Observers\FlashMessageObserver;
 use Pgk\Observers\RedirectToObserver;
 use Pgk\Utils\Flash;
 use Pgk\Utils\Input;
-use SplObserver;
 
 /**
  * Class Event
@@ -17,7 +16,7 @@ use SplObserver;
  *
  * @package Pgk\Events
  */
-abstract class Event implements \SplSubject {
+abstract class Event implements EventInterface {
 
 	/**
 	 * Flash messages
@@ -69,60 +68,113 @@ abstract class Event implements \SplSubject {
 	 */
 	protected $field;
 
+	/**
+	 * Event constructor.
+	 */
 	public function __construct(  ) {
+
 		$this->storage = new \SplObjectStorage();
 
 		/**
 		 * Some cleanup
 		 */
 		$this->clearMessages();
+
+		return $this;
 	}
 
-	abstract public function redirect();
+	/**
+	 * Do what needs to be done
+	 *
+	 * @return mixed
+	 */
 	abstract protected function process();
 
 	/**
-	 * Attach an SplObserver
+	 * @return mixed
+	 */
+	abstract public function redirect();
+
+
+	/**
+	 * Attach an SplObserver.
+	 * We can filter and fire only proper observers,
+	 * depending whether event is finished positive or negative
+	 *
 	 * @link http://php.net/manual/en/splsubject.attach.php
 	 *
-	 * @param SplObserver $observer <p>
-	 * The <b>SplObserver</b> to attach.
-	 * </p>
+	 * @param ObserverInterface $observer
+	 * @param string $type - Must be one of the ['successful', 'unsuccessful', 'all']
+	 *                      This filters which observer to fire
 	 *
-	 * @return void
+	 * @return Event
+	 *
+	 * The <b>SplObserver</b> to attach.
+	 *
+	 *
 	 * @since 5.1.0
+	 *
 	 */
-	public function attach( SplObserver $observer ) {
-		$this->storage->attach( $observer );
+	public function attach( ObserverInterface $observer, $type = 'all' ) {
+		$this->storage->attach( $observer, $type );
+		
+		return $this;
 	}
 
 	/**
 	 * Detach an observer
 	 * @link http://php.net/manual/en/splsubject.detach.php
 	 *
-	 * @param SplObserver $observer <p>
+	 * @param ObserverInterface $observer <p>
 	 * The <b>SplObserver</b> to detach.
 	 * </p>
 	 *
-	 * @return void
+	 * @return Event
 	 * @since 5.1.0
 	 */
-	public function detach( SplObserver $observer ) {
+	public function detach( ObserverInterface $observer ) {
 		if( $this->storage->contains($observer) ) {
 			$this->storage->detach($observer);
 		}
+		
+		return $this;
 	}
 
 	/**
 	 * Notify an observer
+	 * Depending how event is finished,
+	 *
+	 *
 	 * @link http://php.net/manual/en/splsubject.notify.php
 	 * @return void
 	 * @since 5.1.0
 	 */
 	public function notify() {
+
 		if($this->storage->count() !== 0 ) {
+
 			foreach ( $this->storage as $observer ) {
-				$observer->update( $this );
+
+				switch ( [$this->storage[$observer], $this->isFired()] ) {
+
+					case ( ['successful', true] ):
+						$observer->update( $this );
+						break;
+
+					case ( ['unsuccessful', false] ):
+						$observer->update( $this );
+						break;
+
+					case ['all', true]:
+					case ['all', false]:
+						$observer->update( $this );
+						break;
+
+					default:
+						continue;
+						break;
+				}
+
 			}
 		}
 	}
@@ -168,6 +220,9 @@ abstract class Event implements \SplSubject {
 	/**
 	 * If there have declared filters,
 	 * apply them to input data
+	 *
+	 * TODO
+	 *
 	 */
 	private function applyFilters() {
 		if( count( $this->filter ) > 0 ) {
@@ -241,10 +296,15 @@ abstract class Event implements \SplSubject {
 	 *
 	 * @return boolean
 	 */
-	public function isFired() {
+	final public function isFired() {
 		return $this->fired;
 	}
 
+	/**
+	 * Set actions to apply over input data
+	 *
+	 * @param array $action
+	 */
 	public function setFilter( Array $action ) {
 		$this->filter[ key($action) ] = reset($action);
 	}
@@ -257,6 +317,8 @@ abstract class Event implements \SplSubject {
 	}
 
 	/**
+	 * Field name
+	 *
 	 * @return string
 	 */
 	public function getField() {

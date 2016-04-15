@@ -23,13 +23,13 @@ return [
 		'smtp' => true,
 		'smtp_host' => 'smtp.gmail.com',
 		'smtp_auth' => true,
-		'smtp_username' => 'your email',
-		'smtp_password' => 'your password',
+		'smtp_username' => 'peter.pgk@gmail.com',
+		'smtp_password' => 'Amg*#885547-com',
 		'smtp_port' => 465,
 		'smtp_encryption' => 'ssl',
 
-		'email_from' => 'your email',
-		'name_from' => 'your name',
+		'email_from' => 'peter.pgk@gmail.com',
+		'name_from' => 'SAVEA ADMIN',
 	],
 	/**
 	 * Configuration for: Base URL
