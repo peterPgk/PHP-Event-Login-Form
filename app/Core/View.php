@@ -7,12 +7,20 @@ namespace Pgk\Core;
  */
 class View
 {
+    protected $data = [];
+
     public function render($filename, $data = null)
     {
         if ($data) {
+            /**
+             * ??? two years ago I can't remember why this way
+             * but will not change for now
+             */
             foreach ($data as $key => $value) {
                 $this->{$key} = $value;
             }
+
+            $this->data = (array)$data;
         }
 
 	    if ( Ajax::isAjaxRequest() ) {

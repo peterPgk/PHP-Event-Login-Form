@@ -33,6 +33,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `user_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='user data';
 
+-- Dumping data for table event_login.users: ~1 rows (approximately)
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/* Password is 987963 */
+
+INSERT INTO `users` (`user_id`, `session_id`, `username`, `password`, `email`, `last_login`, `password_reset_token`, `password_reset_date`, `password_fails`, `created_at`, `updated_at`) VALUES
+	(1, '0he67vv19q5jgocr93n5tsp4j2', 'peter', '$2y$10$yVDcrPT2LwmljWqnpZLyhekmWweAKAh.9giVhfmYzfjEacAnjicOq', 'pgk@pgk.bg', '2018-03-02 14:32:17', NULL, NULL, 0, '2018-02-26 17:14:55', '2018-03-02 14:32:17');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
 -- Data exporting was unselected.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

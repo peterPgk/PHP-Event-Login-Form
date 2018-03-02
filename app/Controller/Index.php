@@ -3,7 +3,10 @@ namespace Pgk\Controller;
 
 use Pgk\Core\Controller;
 use Pgk\Core\Redirect;
+use Pgk\Core\Request;
+use Pgk\Core\Search;
 use Pgk\Core\Session;
+use Pgk\Drivers\GithubDriver;
 
 /**
  * Class Index
@@ -25,5 +28,20 @@ class Index extends Controller
 		    Redirect::to('login/index');
 	    }
         $this->view->render('index/index');
+    }
+
+    public function search()
+    {
+        //TODO: Select search driver from options
+        //TODO: Pull from Container
+        $search = new Search(new GithubDriver);
+
+        try {
+            $data = $search->find(Request::post('phrase'));
+
+            $this->view->render('search/results', $data);
+        } catch (\Exception $e) {
+
+        }
     }
 }

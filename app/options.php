@@ -13,8 +13,8 @@ return [
 		'driver'    => 'mysql',
 		'host'      => '127.0.0.1',
 		'database'  => 'event_login',
-		'username'  => 'root',
-		'password'  => '',
+		'username'  => 'pgk',
+		'password'  => 'pgk74',
 		'port'      => '3306',
 		'charset'   => 'utf8',
 	],
@@ -35,6 +35,6 @@ return [
 	 * Configuration for: Base URL
 	*/
 	'url' => 'http://' . $_SERVER['HTTP_HOST'] . str_replace('public', '', dirname($_SERVER['SCRIPT_NAME'])),
-	'template_path' => __DIR__ . '/view/',
-	'controller_path' => __DIR__ . '/controller/'
+	'template_path' => __DIR__ . '/View/',
+	'controller_path' => __DIR__ . '/Controller/'
 ];
