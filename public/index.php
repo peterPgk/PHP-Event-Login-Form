@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * This is because some deprecated and notice in php7 and above
+ * TODO: Temporary
+ */
+error_reporting( E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
+
 use Illuminate\Database\Capsule\Manager as EloquentManager;
 use Pgk\Core\Application;
 use Pgk\Core\Config;

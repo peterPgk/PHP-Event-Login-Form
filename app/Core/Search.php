@@ -40,9 +40,11 @@ class Search
 
         $curl_response = curl_exec($curl);
         if ($curl_response === false) {
+        	$error = curl_error($curl);
             $info = curl_getinfo($curl);
             curl_close($curl);
-            throw new \Exception($info);
+
+            throw new \Exception($error);
         }
 
         curl_close($curl);

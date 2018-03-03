@@ -39,9 +39,11 @@ class Index extends Controller
         try {
             $data = $search->find(Request::post('phrase'));
 
-            $this->view->render('search/results', $data);
         } catch (\Exception $e) {
-
+			$data[] = $e->getMessage();
         }
+
+	    $this->view->render('search/results', $data);
+
     }
 }

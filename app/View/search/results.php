@@ -21,27 +21,29 @@ use Pgk\Core\Config;
 </style>
 
 <div class="container">
-<?php
-
-    $this->renderFeedbackMessages(); ?>
 
     <div class="container-header">
-		<h1>Index page</h1>
-		<?php require Config::get('template_path') . 'navigation.php';?>
+        <h1>Index page</h1>
+		<?php require Config::get( 'template_path' ) . 'navigation.php'; ?>
     </div>
 
-    <?php if( !empty($this->data) ): ?>
-    <div class="box" style="min-height: 350px;">
+	<?php if ( ! empty( $this->data ) ): ?>
+    <div class="box">
         <table>
-            <?php foreach ($this->data as $result): ?>
+			<?php foreach ( $this->data as $result ): ?>
                 <tr>
-                    <?php foreach ($result as $key => $item): ?>
-                        <td><?= $item ?></td>
-                    <?php endforeach; ?>
+					<?php
+                    if ( is_array( $result ) ):
+						foreach ( $result as $key => $item ): ?>
+                            <td><?= $item ?></td>
+						<?php endforeach;
+					else: ?>
+                        <td><?= $result; ?></td>
+					<?php endif; ?>
                 </tr>
-            <?php endforeach; ?>
+			<?php endforeach; ?>
         </table>
-        <?php endif; ?>
+		<?php endif; ?>
     </div>
 
 
